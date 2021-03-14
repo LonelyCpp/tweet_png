@@ -27,6 +27,13 @@ class Tweet {
     final dt = json['data'][0];
     final user = json['includes']['users'][0];
 
+    var profilePic = user['profile_image_url'].toString();
+
+    // profile pic url is of the form <somelink>_normal.jpg
+    // remove "_normal" in image url to get higher quality image
+    var extenstion = profilePic.substring(profilePic.length - 4);
+    profilePic = profilePic.substring(0, profilePic.length - 11) + extenstion;
+
     return Tweet(
       dt['text'],
       DateTime.parse(dt['created_at']),
@@ -35,7 +42,7 @@ class Tweet {
       dt['public_metrics']['retweet_count'],
       user['name'],
       user['username'],
-      user['profile_image_url'],
+      profilePic,
     );
   }
 }
