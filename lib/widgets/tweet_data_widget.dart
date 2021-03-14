@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:tweet_png/api/tweet.dart';
 import 'package:tweet_png/state/app_state.dart';
 
-var dateFormatter = new DateFormat('h:mm a · MMM d, yyyy');
+var _dateFormatter = new DateFormat('h:mm a · MMM d, yyyy');
+const double _statFontSize = 16;
 
 class TweetDataWidget extends StatelessWidget {
   @override
@@ -39,11 +40,18 @@ class TweetDataWidget extends StatelessWidget {
                   Text(
                     tweet.authorName,
                     maxLines: 1,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: theme.textTheme.bodyText1.color,
+                    ),
                   ),
                   Text(
                     '@${tweet.authorTwitterHandle}',
-                    style: TextStyle(color: Colors.black45, fontSize: 15),
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: theme.textTheme.caption.color,
+                    ),
                   ),
                 ],
               )
@@ -53,7 +61,11 @@ class TweetDataWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16, bottom: 16),
             child: Text(
               tweet.text,
-              style: TextStyle(fontSize: 18, height: 1.2),
+              style: TextStyle(
+                height: 1.2,
+                fontSize: 18,
+                color: theme.textTheme.bodyText1.color,
+              ),
             ),
           ),
           Visibility(
@@ -62,8 +74,8 @@ class TweetDataWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12),
               child: Text(
                 // "8:07 AM · Feb 24, 2021",
-                dateFormatter.format(tweet.createdAt),
-                style: TextStyle(color: Colors.black45, fontSize: 12),
+                _dateFormatter.format(tweet.createdAt),
+                style: TextStyle(color: theme.disabledColor, fontSize: 12),
               ),
             ),
           ),
@@ -74,44 +86,65 @@ class TweetDataWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.favorite_rounded,
-                        size: 18,
-                        color: Colors.redAccent,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(tweet.likes.toString(),
-                          style:
-                              TextStyle(color: Colors.black45, fontSize: 18)),
-                    ],
+                  Visibility(
+                    visible: appState.showLikes,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.favorite_rounded,
+                          size: _statFontSize,
+                          color: Colors.redAccent,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(NumberFormat.compact().format(tweet.likes),
+                            style: TextStyle(
+                              fontSize: _statFontSize,
+                              color: theme.textTheme.caption.color,
+                            )),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.repeat_rounded,
-                          size: 18, color: Colors.black45),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(tweet.retweets.toString(),
-                          style:
-                              TextStyle(color: Colors.black45, fontSize: 18)),
-                    ],
+                  Visibility(
+                    visible: appState.showRetweets,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.repeat_rounded,
+                          size: _statFontSize,
+                          color: Colors.green,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(NumberFormat.compact().format(tweet.retweets),
+                            style: TextStyle(
+                              fontSize: _statFontSize,
+                              color: theme.textTheme.caption.color,
+                            )),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.mode_comment_outlined,
-                          size: 18, color: Colors.black45),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(tweet.replies.toString(),
-                          style:
-                              TextStyle(color: Colors.black45, fontSize: 18)),
-                    ],
+                  Visibility(
+                    visible: appState.showReplies,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.mode_comment_outlined,
+                          size: _statFontSize,
+                          color: theme.textTheme.caption.color,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(NumberFormat.compact().format(tweet.replies),
+                            style: TextStyle(
+                              fontSize: _statFontSize,
+                              color: theme.textTheme.caption.color,
+                            )),
+                      ],
+                    ),
                   ),
                 ],
               ),

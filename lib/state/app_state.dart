@@ -3,8 +3,15 @@ import 'package:tweet_png/api/tweet.dart';
 
 class AppState extends ChangeNotifier {
   Tweet _tweet;
-  bool showStats = true;
+
+  bool darkMode = false;
+
   bool showDate = true;
+  bool showLikes = true;
+  bool showStats = true;
+  bool showReplies = true;
+  bool showRetweets = true;
+
   Color bgColor = Colors.lightBlue;
 
   Tweet get getTweetData {
@@ -21,6 +28,11 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleDarkMode() {
+    darkMode = !darkMode;
+    notifyListeners();
+  }
+
   void toggleStats() {
     showStats = !showStats;
     notifyListeners();
@@ -28,6 +40,21 @@ class AppState extends ChangeNotifier {
 
   void toggleDate() {
     showDate = !showDate;
+    notifyListeners();
+  }
+
+  void toggleLikes() {
+    showLikes = !showLikes;
+    notifyListeners();
+  }
+
+  void toggleRetweets() {
+    showRetweets = !showRetweets;
+    notifyListeners();
+  }
+
+  void toggleReplies() {
+    showReplies = !showReplies;
     notifyListeners();
   }
 }
