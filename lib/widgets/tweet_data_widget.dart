@@ -5,9 +5,50 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tweet_png/api/tweet.dart';
 import 'package:tweet_png/state/app_state.dart';
+import 'package:tweet_png/util/string_utils.dart';
 
 var _dateFormatter = new DateFormat('h:mm a · MMM d, yyyy');
 const double _statFontSize = 16;
+
+class _TweetStat extends StatelessWidget {
+  final int value;
+  final Color color;
+  final bool visible;
+  final IconData icon;
+
+  const _TweetStat({Key key, this.icon, this.value, this.visible, this.color})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
+
+    if (!visible) {
+      return Container();
+    }
+
+    return Flexible(
+      flex: 1,
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: _statFontSize,
+            color: color,
+          ),
+          SizedBox(
+            width: 4,
+          ),
+          Text(NumberFormat.compact().format(value),
+              style: TextStyle(
+                fontSize: _statFontSize,
+                color: theme.textTheme.caption.color,
+              )),
+        ],
+      ),
+    );
+  }
+}
 
 class TweetDataWidget extends StatelessWidget {
   @override
@@ -59,12 +100,21 @@ class TweetDataWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16, bottom: 16),
-            child: Text(
-              tweet.text,
-              style: TextStyle(
-                height: 1.2,
-                fontSize: 18,
-                color: theme.textTheme.bodyText1.color,
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  height: 1.2,
+                  fontSize: 18,
+                  color: theme.textTheme.bodyText1.color,
+                ),
+                children: tweetToRichText(tweet.text)
+                    .map((e) => TextSpan(
+                        text: '${e.text} ',
+                        style: e.isHighlighted
+                            ? TextStyle(color: theme.accentColor)
+                            : null,
+                        children: []))
+                    .toList(),
               ),
             ),
           ),
@@ -84,67 +134,24 @@ class TweetDataWidget extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.only(right: 16),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Visibility(
+                  _TweetStat(
+                    value: tweet.likes,
                     visible: appState.showLikes,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.favorite_rounded,
-                          size: _statFontSize,
-                          color: Colors.redAccent,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(NumberFormat.compact().format(tweet.likes),
-                            style: TextStyle(
-                              fontSize: _statFontSize,
-                              color: theme.textTheme.caption.color,
-                            )),
-                      ],
-                    ),
+                    icon: Icons.favorite_rounded,
+                    color: Colors.red,
                   ),
-                  Visibility(
+                  _TweetStat(
+                    value: tweet.retweets,
                     visible: appState.showRetweets,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.repeat_rounded,
-                          size: _statFontSize,
-                          color: Colors.green,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(NumberFormat.compact().format(tweet.retweets),
-                            style: TextStyle(
-                              fontSize: _statFontSize,
-                              color: theme.textTheme.caption.color,
-                            )),
-                      ],
-                    ),
+                    icon: Icons.repeat_rounded,
+                    color: Colors.green,
                   ),
-                  Visibility(
+                  _TweetStat(
+                    value: tweet.replies,
                     visible: appState.showReplies,
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.mode_comment_outlined,
-                          size: _statFontSize,
-                          color: theme.textTheme.caption.color,
-                        ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(NumberFormat.compact().format(tweet.replies),
-                            style: TextStyle(
-                              fontSize: _statFontSize,
-                              color: theme.textTheme.caption.color,
-                            )),
-                      ],
-                    ),
+                    icon: Icons.mode_comment_outlined,
+                    color: theme.textTheme.caption.color,
                   ),
                 ],
               ),
