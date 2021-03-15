@@ -9,8 +9,9 @@ A flutter app to generate beautiful, high-quality screenshots of tweets from twi
 - [x] add / remove tweet date
 - [x] choose background color
 - [x] dark / light theme tweet card
+- [x] tweet image preview
+- [x] highlight hashtags, mentions, links
 - [ ] quote tweets
-- [ ] tweet image preview
 - [ ] tweet video preview
 - [ ] pattern backgrounds
 - [ ] retweet indicator
