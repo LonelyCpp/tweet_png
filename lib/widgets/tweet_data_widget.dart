@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:tweet_png/api/tweet.dart';
 import 'package:tweet_png/state/app_state.dart';
 import 'package:tweet_png/util/string_utils.dart';
+import 'package:tweet_png/widgets/tweet_media.dart';
 
 var _dateFormatter = new DateFormat('h:mm a · MMM d, yyyy');
 const double _statFontSize = 16;
@@ -118,6 +119,7 @@ class TweetDataWidget extends StatelessWidget {
               ),
             ),
           ),
+          TweetMedia(tweet: tweet),
           Visibility(
             visible: appState.showDate,
             child: Padding(

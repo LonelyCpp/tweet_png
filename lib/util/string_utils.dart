@@ -9,6 +9,6 @@ class _RichTweetSpan {
 
 List<_RichTweetSpan> tweetToRichText(String tweet) {
   return tweet.split(' ').map((e) {
-    return _RichTweetSpan(e, e.startsWith(RegExp(r'[#@]')));
+    return _RichTweetSpan(e, e.startsWith(RegExp(r'[#@]|https://')));
   }).toList();
 }

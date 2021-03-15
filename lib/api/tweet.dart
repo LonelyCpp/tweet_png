@@ -10,6 +10,8 @@ class Tweet {
   final String authorTwitterHandle;
   final String authorProfilePicUrl;
 
+  final List<String> imageUrls;
+
   Tweet(
     this.text,
     this.createdAt,
@@ -19,18 +21,26 @@ class Tweet {
     this.authorName,
     this.authorTwitterHandle,
     this.authorProfilePicUrl,
+    this.imageUrls,
   );
 
   static fromTwitterResponse(Map<String, dynamic> json) {
-    // print(json.toString());
-
     final dt = json['data'][0];
     final user = json['includes']['users'][0];
+    final List media = json['includes']['media'];
 
-    var profilePic = user['profile_image_url'].toString();
+    final List<String> imageUrls = [];
+    if (media != null) {
+      media.forEach((element) {
+        if (element['type'] == 'photo') {
+          imageUrls.add(element['url'].toString());
+        }
+      });
+    }
 
     // profile pic url is of the form <somelink>_normal.jpg
     // remove "_normal" in image url to get higher quality image
+    var profilePic = user['profile_image_url'].toString();
     var extenstion = profilePic.substring(profilePic.length - 4);
     profilePic = profilePic.substring(0, profilePic.length - 11) + extenstion;
 
@@ -43,6 +53,7 @@ class Tweet {
       user['name'],
       user['username'],
       profilePic,
+      imageUrls,
     );
   }
 }
