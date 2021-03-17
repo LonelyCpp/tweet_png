@@ -17,24 +17,15 @@ class TweetMedia extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 8),
         child: Container(
           decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: theme.shadowColor.withOpacity(0.2),
-                spreadRadius: 1,
-                blurRadius: 5,
-                offset: Offset(0, 2), // changes position of shadow
-              )
-            ],
             borderRadius: borderRadius,
+            border: Border.all(
+                color: theme.disabledColor.withOpacity(0.2), width: 0.5),
           ),
           child: ClipRRect(
             borderRadius: borderRadius,
-            child: AspectRatio(
-              aspectRatio: 1.69,
-              child: Image.network(
-                tweet.imageUrls[0],
-                fit: BoxFit.cover,
-              ),
+            child: Image.network(
+              tweet.imageUrls[0],
+              fit: BoxFit.cover,
             ),
           ),
         ),
