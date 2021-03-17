@@ -31,6 +31,7 @@ dependencies:
   share: ^0.6.5+4
   provider: ^4.3.3
   screenshot: ^0.3.0
+  html_unescape: ^1.0.2
   path_provider: ^2.0.1
   cupertino_icons: ^1.0.0
   shared_preferences: ^2.0.3
