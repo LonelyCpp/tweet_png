@@ -100,7 +100,7 @@ class TweetDataWidget extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 16),
+            padding: const EdgeInsets.only(top: 16),
             child: RichText(
               text: TextSpan(
                 style: TextStyle(
@@ -123,7 +123,7 @@ class TweetDataWidget extends StatelessWidget {
           Visibility(
             visible: appState.showDate,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.only(top: 12),
               child: Text(
                 // "8:07 AM · Feb 24, 2021",
                 _dateFormatter.format(tweet.createdAt),
@@ -134,7 +134,7 @@ class TweetDataWidget extends StatelessWidget {
           Visibility(
             visible: appState.showStats,
             child: Container(
-              padding: EdgeInsets.only(right: 16),
+              padding: EdgeInsets.only(right: 16, top: 12),
               child: Row(
                 children: [
                   _TweetStat(
