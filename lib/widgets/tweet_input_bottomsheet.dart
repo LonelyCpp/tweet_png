@@ -19,8 +19,7 @@ class TweetInputSheet extends StatefulWidget {
 }
 
 class _TweetInputSheetState extends State<TweetInputSheet> {
-  final tweetLinkController = TextEditingController(
-      text: 'https://twitter.com/goodreads/status/1385695224056406023');
+  final tweetLinkController = TextEditingController();
   final tweetTokenController = TextEditingController();
 
   SharedPreferences prefInstance;

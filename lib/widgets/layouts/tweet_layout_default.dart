@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:tweet_png/api/tweet.dart';
 import 'package:tweet_png/state/app_state.dart';
 import 'package:tweet_png/util/string_utils.dart';
+import 'package:tweet_png/widgets/layouts/tweet_layout_base.dart';
 import 'package:tweet_png/widgets/tweet_media.dart';
 
 var _dateFormatter = new DateFormat('h:mm a · MMM d, yyyy');
@@ -51,7 +52,7 @@ class _TweetStat extends StatelessWidget {
   }
 }
 
-class TweetDataWidget extends StatelessWidget {
+class TweetLayoutDefault extends TweetLayoutBase {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppState>(builder: (context, appState, child) {
