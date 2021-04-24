@@ -1,8 +1,8 @@
 # tweet_png
 
-A flutter app to generate beautiful, high-quality screenshots of tweets from twitter.
+A flutter app to generate beautiful, high-quality screenshots of tweets from twitter. [Follow on Instagram for more](https://www.instagram.com/tweet_png/)
 
-![banner image]('./assets/banner.png')
+![banner image](./assets/banner.png)
 
 ## using the app
 
