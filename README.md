@@ -2,6 +2,8 @@
 
 A flutter app to generate beautiful, high-quality screenshots of tweets from twitter.
 
+![banner image]('./assets/banner.png')
+
 ## using the app
 
 1. get your twitter **V2** API key.
