@@ -12,7 +12,7 @@ class TwitterApi {
     const base = 'https://api.twitter.com/2/tweets';
 
     const expansions = 'expansions=author_id,attachments.media_keys';
-    const userFields = 'user.fields=profile_image_url';
+    const userFields = 'user.fields=profile_image_url,verified';
     const tweetFields = 'tweet.fields=created_at,public_metrics';
     const mediaFields = 'media.fields=height,width,type,url,preview_image_url';
 

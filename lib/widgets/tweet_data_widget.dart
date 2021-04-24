@@ -79,14 +79,29 @@ class TweetDataWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    tweet.authorName,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: theme.textTheme.bodyText1.color,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        tweet.authorName,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: theme.textTheme.bodyText1.color,
+                        ),
+                      ),
+                      Visibility(
+                        visible: tweet.verified,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: Image.asset(
+                            'assets/verified.png',
+                            width: 18,
+                            height: 18,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   Text(
                     '@${tweet.authorTwitterHandle}',

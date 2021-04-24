@@ -6,6 +6,7 @@ class Tweet {
   final int replies;
   final int retweets;
 
+  final bool verified;
   final String authorName;
   final String authorTwitterHandle;
   final String authorProfilePicUrl;
@@ -18,6 +19,7 @@ class Tweet {
     this.likes,
     this.replies,
     this.retweets,
+    this.verified,
     this.authorName,
     this.authorTwitterHandle,
     this.authorProfilePicUrl,
@@ -50,6 +52,7 @@ class Tweet {
       dt['public_metrics']['like_count'],
       dt['public_metrics']['reply_count'],
       dt['public_metrics']['retweet_count'],
+      user['verified'],
       user['name'],
       user['username'],
       profilePic,
