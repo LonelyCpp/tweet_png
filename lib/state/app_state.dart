@@ -1,5 +1,6 @@
+import '../api/tweet.dart';
 import 'package:flutter/material.dart';
-import 'package:tweet_png/api/tweet.dart';
+import 'package:tweet_png/widgets/layouts/tweet_layout_picker.dart';
 
 class AppState extends ChangeNotifier {
   Tweet _tweet;
@@ -13,6 +14,8 @@ class AppState extends ChangeNotifier {
   bool showRetweets = true;
 
   Color bgColor = Colors.lightBlue;
+
+  TweetLayoutName layout = TweetLayoutName.DEFAULT;
 
   Tweet get getTweetData {
     return _tweet;
@@ -55,6 +58,11 @@ class AppState extends ChangeNotifier {
 
   void toggleReplies() {
     showReplies = !showReplies;
+    notifyListeners();
+  }
+
+  set setLayout(TweetLayoutName newLayout) {
+    layout = newLayout;
     notifyListeners();
   }
 }

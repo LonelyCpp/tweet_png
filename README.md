@@ -27,7 +27,7 @@ A flutter app to generate beautiful, high-quality screenshots of tweets from twi
 - [x] tweet image preview
 - [x] highlight hashtags, mentions, links
 - [x] verified badge
-- [ ] additional layouts
+- [x] additional layouts
 - [ ] quote tweets
 - [ ] tweet video preview
 - [ ] pattern backgrounds

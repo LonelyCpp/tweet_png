@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:tweet_png/state/app_state.dart';
-import 'package:tweet_png/widgets/layouts/tweet_layout_default.dart';
+import 'package:tweet_png/widgets/layouts/tweet_layout_picker.dart';
 
 class TweetCanvas extends StatelessWidget {
   final ScreenshotController screenshotController;
@@ -71,7 +71,9 @@ class _ThemedCanvas extends StatelessWidget {
                 )
               ],
             ),
-            child: TweetLayoutDefault(),
+            child: Consumer<AppState>(builder: (context, appState, child) {
+              return buildTweetLayout(appState.layout);
+            }),
           ),
         ));
   }

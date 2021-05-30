@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share/share.dart';
-import 'package:tweet_png/widgets/customize_sheet.dart';
-import 'package:tweet_png/widgets/tweet_input_bottomsheet.dart';
+import 'package:tweet_png/widgets/bottom_sheets/customize_sheet.dart';
+import 'package:tweet_png/widgets/bottom_sheets/tweet_input_bottomsheet.dart';
 
 class BottomOptions extends StatelessWidget {
   final ScreenshotController screenshotController;

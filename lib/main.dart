@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:tweet_png/state/app_state.dart';
-import 'package:tweet_png/widgets/bottom_options.dart';
+import 'package:tweet_png/widgets/bottom_sheets/bottom_options.dart';
 import 'package:tweet_png/widgets/tweet_canvas.dart';
 
 void main() {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tweet_png/state/app_state.dart';
 import 'package:tweet_png/widgets/color_picker.dart';
+import 'package:tweet_png/widgets/layouts/tweet_layout_picker.dart';
 import 'package:tweet_png/widgets/switch.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
@@ -104,6 +105,15 @@ class CustomizeSheet extends StatelessWidget {
                   return TweetColorPicker(
                     onSelect: (newColor) {
                       appState.setBgColor = newColor;
+                    },
+                  );
+                },
+              ),
+              Consumer<AppState>(
+                builder: (context, appState, child) {
+                  return TweetLayoutPicker(
+                    onSelect: (newLayout) {
+                      appState.setLayout = newLayout;
                     },
                   );
                 },
